@@ -1,5 +1,6 @@
 import React from 'react';
-import Home from '../screens/dashbaord';
+import CallStack from './call';
+import Dashboard from '../screens/dashboard';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ThemeProvider} from '../config/utils/context/ThemeManager';
@@ -8,22 +9,22 @@ import {AppStateProvider} from '../config/utils/context/app_state';
 const RootStack = createStackNavigator();
 const RootStackScreen = () => {
   return (
-    <RootStack.Navigator initialRouteName="Splash">
+    <RootStack.Navigator initialRouteName="Dashboard">
       <RootStack.Screen
-        name="Home"
-        component={Home}
+        name="Dashboard"
+        component={Dashboard}
         options={{
           headerShown: false,
         }}
       />
 
-      {/* <RootStack.Screen
-        name="AuthStack"
-        component={AuthStack}
+      <RootStack.Screen
+        name="CallStack"
+        component={CallStack}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
     </RootStack.Navigator>
   );
 };

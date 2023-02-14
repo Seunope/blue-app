@@ -15,20 +15,30 @@ const AppContainer: React.FC<ParentContainer> = ({
   showNotify = true,
 }) => {
   return (
-    <Box flex={1} bgColor="white.100">
-      {isDashboard ? null : <HeaderContainer showNotification={showNotify} />}
+    <Box
+      flex={1}
+      bgColor="white.100"
+      // _dark={{
+      //   color: 'black.100',
+      // }}
+    >
+      {isDashboard ? null : (
+        <HeaderContainer
+          showNotification={showNotify}
+          headerTxt={headerTxt}
+          hasHeader={hasHeader}
+        />
+      )}
 
       <StatusBar barStyle="dark-content" backgroundColor={colors.white[100]} />
-      <Box p={5} flex={1} bgColor="white.100">
-        {hasHeader ? (
-          <Heading
-            size="lg"
-            fontWeight={300}
-            fontFamily="heading"
-            fontStyle="normal">
-            {headerTxt}
-          </Heading>
-        ) : null}
+      <Box
+        p={5}
+        flex={1}
+        bgColor="white.100"
+        // _dark={{
+        //   color: 'black.100',
+        // }}
+      >
         {scrollAble ? (
           <ScrollView showsVerticalScrollIndicator={false}>
             <VStack space={5}>{children}</VStack>

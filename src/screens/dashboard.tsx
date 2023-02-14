@@ -2,14 +2,15 @@ import React from 'react';
 import {View} from 'react-native';
 import MoonIcon from '../assets/moon';
 import {StyleSheet} from 'react-native';
-import {Text, Center} from 'native-base';
+import {Text, Center, Pressable} from 'native-base';
 import AppContainer from '../components/AppContainer';
 import {StackScreenProps} from '@react-navigation/stack';
 import colors from '../config/utils/colors';
-
+import {useNavigation} from '@react-navigation/core';
 // type Props = StackScreenProps<AuthStackParams, 'SignUp'>;
 
 const Dashboard: React.FC<Props> = props => {
+  const navigation = useNavigation();
   return (
     <AppContainer hasHeader={false} isDashboard={true}>
       <View style={styles.containerRight}>
@@ -26,7 +27,9 @@ const Dashboard: React.FC<Props> = props => {
         Blue<Text color="black.100">Apps</Text>
       </Text>
 
-      <View style={styles.containerMain}>
+      <Pressable
+        style={styles.containerMain}
+        onPress={() => navigation.navigate('CallStack')}>
         <View style={styles.containerSub}>
           <View style={styles.containerRight}>
             <View style={styles.boxRight} />
@@ -41,7 +44,9 @@ const Dashboard: React.FC<Props> = props => {
           </Center>
         </View>
 
-        <View style={styles.containerSub}>
+        <Pressable
+          style={styles.containerSub}
+          onPress={() => navigation.navigate('CallStack')}>
           <View style={styles.containerRight}>
             <View style={[styles.boxRight, {backgroundColor: colors.orange}]} />
           </View>
@@ -53,8 +58,8 @@ const Dashboard: React.FC<Props> = props => {
               Video Call
             </Text>
           </Center>
-        </View>
-      </View>
+        </Pressable>
+      </Pressable>
 
       <View style={styles.containerMain}>
         <View style={[styles.containerSub, {marginTop: 0}]}>
