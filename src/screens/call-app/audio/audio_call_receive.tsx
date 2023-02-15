@@ -22,7 +22,7 @@ const CallAndReceive = props => {
     <>
       <StatusBar translucent backgroundColor="transparent" hidden={true} />
       <ImageBackground
-        source={require('../../assets/call/call_background.png')}
+        source={require('../../../assets/call/call_background.png')}
         resizeMode="cover"
         style={styles.image}>
         <Center flex="1">
