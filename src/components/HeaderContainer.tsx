@@ -30,7 +30,7 @@ const HeaderTitleContainer = ({
   return (
     <Box
       mx="1"
-      mt="6"
+      //mt="6"
       flexDirection="row"
       alignItems="center"
       backgroundColor="white"
@@ -42,8 +42,8 @@ const HeaderTitleContainer = ({
           {...{color}}
           align="center"
           iconRatio={0.5}
-          name={<BackIcon />}
-          children={<BackIcon />}
+          name={<BackIcon color={color} />}
+          children={<BackIcon color={color} />}
           onPress={() => navigation.goBack()}
         />
       ) : null}

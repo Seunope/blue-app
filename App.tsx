@@ -144,9 +144,14 @@ const App = () => {
   //     console.log(e);
   //   }
   // };
+  const config = {
+    dependencies: {
+      'linear-gradient': require('react-native-linear-gradient').default,
+    },
+  };
 
   return (
-    <NativeBaseProvider theme={theme}>
+    <NativeBaseProvider theme={theme} config={config}>
       <RootNavigation />
     </NativeBaseProvider>
   );

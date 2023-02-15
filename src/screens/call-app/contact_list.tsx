@@ -10,23 +10,29 @@ import {
   Avatar,
   Spacer,
 } from 'native-base';
-import {StyleSheet} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 import AppContainer from '../../components/AppContainer';
 import contactListData from '../../config/commons/contact_list_data';
 
 const ContactList = props => {
+  const navigation = useNavigation();
   const [searchEntry, setSearchEntry] = useState('');
   const [searchedContacts, setSearchedContacts] = useState(contactListData);
 
   useEffect(() => {
     filterContacts();
-  }, [searchEntry]);
+  }, []);
 
   const filterContacts = () => {
     const newContacts = contactListData.filter(contact =>
       contact.fullName.toLowerCase().includes(searchEntry.toLowerCase()),
     );
     setSearchedContacts(newContacts);
+  };
+
+  const renderFooter = () => {
+    return <Box mt="20" />;
   };
 
   return (
@@ -52,8 +58,12 @@ const ContactList = props => {
                   uri: item.avatarUrl,
                 }}
               />
+
               <VStack borderColor="black.70" borderBottomWidth="1" width="1005">
                 <Text
+                  onPress={() =>
+                    navigation.navigate('CallStack', {screen: 'CallAndReceive'})
+                  }
                   _dark={{
                     color: 'white.90',
                   }}
@@ -76,6 +86,7 @@ const ContactList = props => {
           </Box>
         )}
         keyExtractor={item => item.id}
+        ListFooterComponent={renderFooter}
       />
     </AppContainer>
   );

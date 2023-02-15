@@ -1,9 +1,11 @@
 import React from 'react';
 import colors from '../config/utils/colors';
-import CallAndReceive from '../screens/call-app/call_receive';
-import AudioCall from '../screens/call-app/audio_call';
+import AudioCall from '../screens/call-app/audio/audio_ongoing';
+import VideoCall from '../screens/call-app/video/video_ongoing';
 import ContactList from '../screens/call-app/contact_list';
 import {createStackNavigator} from '@react-navigation/stack';
+import CallAndReceive from '../screens/call-app/audio/audio_call_receive';
+import VideoCallAndReceive from '../screens/call-app/video/video_call_receive';
 
 export type MoreStackParams = {
   ContactList: undefined;
@@ -12,7 +14,7 @@ export type MoreStackParams = {
 const MoreStack = createStackNavigator<MoreStackParams>();
 export default () => (
   <MoreStack.Navigator
-    initialRouteName="AudioCall"
+    initialRouteName="ContactList"
     screenOptions={{
       headerShown: false,
       gestureEnabled: false,
@@ -37,10 +39,28 @@ export default () => (
         // headerTintColor: colors.black,
       }}
     />
+    <MoreStack.Screen
+      name="VideoCallAndReceive"
+      component={VideoCallAndReceive}
+      options={{
+        headerTitle: '',
+        headerTransparent: true,
+        // headerTintColor: colors.black,
+      }}
+    />
 
     <MoreStack.Screen
       name="AudioCall"
       component={AudioCall}
+      options={{
+        headerTitle: '',
+        headerTransparent: true,
+        // headerTintColor: colors.black,
+      }}
+    />
+    <MoreStack.Screen
+      name="VideoCall"
+      component={VideoCall}
       options={{
         headerTitle: '',
         headerTransparent: true,

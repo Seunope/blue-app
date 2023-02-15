@@ -61,4 +61,20 @@ module.exports = [
     avatarUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU',
   },
+  {
+    id: '68694a0f-3da1-431f-bd56-1423d71e29d72',
+    fullName: 'Aniket Kumar',
+    timeStamp: '8:56 PM',
+    recentText: 'offline',
+    avatarUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU',
+  },
+  {
+    id: '28694a0f-3da1-471f-bd96-14245d6e29d72',
+    fullName: 'Kiara',
+    timeStamp: '12:47 PM',
+    recentText: 'offline',
+    avatarUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU',
+  },
 ];
