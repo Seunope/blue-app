@@ -9,7 +9,7 @@ import {AppStateProvider} from '../config/utils/context/app_state';
 const RootStack = createStackNavigator();
 const RootStackScreen = () => {
   return (
-    <RootStack.Navigator initialRouteName="Dashboard">
+    <RootStack.Navigator initialRouteName="CallStack">
       <RootStack.Screen
         name="Dashboard"
         component={Dashboard}
