@@ -1,5 +1,6 @@
 import React from 'react';
 import CallStack from './call';
+// import Wordle from '../screens/wordle/wordle';
 import Dashboard from '../screens/dashboard';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -17,6 +18,14 @@ const RootStackScreen = () => {
           headerShown: false,
         }}
       />
+
+      {/* <RootStack.Screen
+        name="Wordle"
+        component={Wordle}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
 
       <RootStack.Screen
         name="CallStack"

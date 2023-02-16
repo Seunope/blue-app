@@ -27,4 +27,13 @@ export default {
   green: '#93D75C',
   purple: '#927FF2',
   orange: '#FABC2E',
+
+  wordle: {
+    black: '#121214',
+    darkgrey: '#3A3A3D',
+    grey: '#818384',
+    lightgrey: '#D7DADC',
+    primary: '#538D4E',
+    secondary: '#B59F3B',
+  },
 };

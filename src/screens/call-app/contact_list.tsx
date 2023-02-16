@@ -15,7 +15,7 @@ import {
 import {Pressable, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import AppContainer from '../../components/AppContainer';
-import contactListData from '../../config/commons/contact_list_data';
+import contactListData from '../../config/data/contact_list_data';
 import HeaderContainerr from '../../components/HeaderContainerr';
 import SearchIc from '../../assets/call/search';
 

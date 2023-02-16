@@ -9,7 +9,7 @@ import EndCall from '../../../assets/call/end_call';
 import SoundWave from '../../../assets/call/sound';
 import {HStack, Center, VStack, Avatar, Text, FlatList} from 'native-base';
 import {ImageBackground, StyleSheet, StatusBar, View} from 'react-native';
-import contactListData from '../../../config/commons/contact_list_data';
+import contactListData from '../../../config/data/contact_list_data';
 
 // import CallBackground from '../../assets/call/call_background';
 

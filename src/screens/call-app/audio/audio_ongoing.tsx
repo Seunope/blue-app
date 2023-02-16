@@ -17,7 +17,7 @@ import {
   Pressable,
 } from 'native-base';
 import {ImageBackground, StyleSheet, StatusBar, View} from 'react-native';
-import contactListData from '../../../config/commons/contact_list_data';
+import contactListData from '../../../config/data/contact_list_data';
 import {useNavigation} from '@react-navigation/core';
 
 // import CallBackground from '../../assets/call/call_background';
