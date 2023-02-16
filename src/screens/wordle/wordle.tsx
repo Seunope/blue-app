@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  Alert,
-} from 'react-native';
-import {CLEAR, ENTER, colorsToEmoji} from '../../config/utils/utils';
+import {StyleSheet, View, SafeAreaView, ScrollView, Alert} from 'react-native';
+import {Center, Box, Text} from 'native-base';
+import {CLEAR, ENTER, colorsToEmoji, DELETE} from '../../config/utils/utils';
 import Keyboard from '../../components/Keyboard';
 // import * as Clipboard from 'expo-clipboard';
 import {StatusBar} from 'react-native';
+import WordleLogo from '../../assets/wordle';
+import HeaderContainerr from '../../components/HeaderContainerr';
+import colors from '../../config/utils/colors';
+import fiveLetterWords from '../../config/data/words';
 
 const NUMBER_OF_TRIES = 6;
 
@@ -27,54 +25,10 @@ const getDayOfTheYear = () => {
   return day;
 };
 const dayOfTheYear = getDayOfTheYear();
-const words = [
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-  'hello',
-  'world',
-];
 
 export default () => {
-  const word = words[dayOfTheYear];
+  const wordUpperLimit = fiveLetterWords.length - 1;
+  const word = fiveLetterWords[Math.floor(Math.random() * wordUpperLimit)];
   const letters = word.split(''); // ['h', 'e', 'l', 'l', 'o']
 
   const [rows, setRows] = useState(
@@ -92,9 +46,9 @@ export default () => {
 
   const checkGameState = () => {
     if (checkIfWon() && gameState !== 'won') {
-      Alert.alert('Huraaay', 'You won!', [
-        // {text: 'Share', onPress: shareScore},
-      ]);
+      // Alert.alert('Huraaay', 'You won!', [
+      // {text: 'Share', onPress: shareScore},
+      // ]);
       setGameState('won');
     } else if (checkIfLost() && gameState !== 'lost') {
       Alert.alert('Meh', 'Try again tomorrow!');
@@ -133,7 +87,7 @@ export default () => {
 
     const updatedRows = copyArray(rows);
 
-    if (key === CLEAR) {
+    if (key === DELETE) {
       const prevCol = curCol - 1;
       if (prevCol >= 0) {
         updatedRows[curRow][prevCol] = '';
@@ -167,15 +121,15 @@ export default () => {
     const letter = rows[row][col];
 
     if (row >= curRow) {
-      return 'black[100]';
+      return colors.gray[100];
     }
     if (letter === letters[col]) {
-      return 'blue';
+      return 'purple';
     }
     if (letters.includes(letter)) {
       return 'green';
     }
-    return 'gray';
+    return colors.gray[70];
   };
 
   const getAllLettersWithColor = (color: string) => {
@@ -184,42 +138,44 @@ export default () => {
     );
   };
 
-  const greenCaps = getAllLettersWithColor('blue');
-  const yellowCaps = getAllLettersWithColor('yello');
-  const greyCaps = getAllLettersWithColor('red');
+  const greenCaps = getAllLettersWithColor(colors.green);
+  const yellowCaps = getAllLettersWithColor(colors.orange);
+  const greyCaps = getAllLettersWithColor(colors.gray[100]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar />
+      <Box flex="1" bgColor="gray.90">
+        <HeaderContainerr dark={true} />
 
-      <Text style={styles.title}>WORDLE</Text>
-
-      <ScrollView style={styles.map}>
-        {rows.map((row, i) => (
-          <View key={`row-${i}`} style={styles.row}>
-            {row.map((letter: string, j: any) => (
-              <View
-                key={`cell-${i}-${j}`}
-                style={[
-                  styles.cell,
-                  {
-                    borderColor: isCellActive(i, j) ? 'gray[90]' : 'gray[100]',
-                    backgroundColor: getCellBGColor(i, j),
-                  },
-                ]}>
-                <Text style={styles.cellText}>{letter.toUpperCase()}</Text>
+        <Center flex="1" p="4">
+          <WordleLogo />
+          <ScrollView style={styles.map}>
+            {rows.map((row, i) => (
+              <View key={`row-${i}`} style={styles.row}>
+                {row.map((letter: string, j: any) => (
+                  <View
+                    key={`cell-${i}-${j}`}
+                    style={[
+                      styles.cell,
+                      {
+                        backgroundColor: getCellBGColor(i, j),
+                      },
+                    ]}>
+                    <Text style={styles.cellText}>{letter.toUpperCase()}</Text>
+                  </View>
+                ))}
               </View>
             ))}
-          </View>
-        ))}
-      </ScrollView>
-
-      <Keyboard
-        onKeyPressed={onKeyPressed}
-        greenCaps={greenCaps} // ['a', 'b']
-        yellowCaps={yellowCaps}
-        greyCaps={greyCaps}
-      />
+          </ScrollView>
+          <Text color="black.100">Answer: {word}</Text>
+        </Center>
+        <Keyboard
+          onKeyPressed={onKeyPressed}
+          greenCaps={greenCaps} // ['a', 'b']
+          yellowCaps={yellowCaps}
+          greyCaps={greyCaps}
+        />
+      </Box>
     </SafeAreaView>
   );
 };
@@ -227,11 +183,11 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black[100]',
+    backgroundColor: colors.black[100],
     alignItems: 'center',
   },
   title: {
-    color: 'gray[100]',
+    color: colors.gray[100],
     fontSize: 32,
     fontWeight: 'bold',
     letterSpacing: 7,
@@ -247,17 +203,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cell: {
-    borderWidth: 3,
-    borderColor: 'gray[100]',
     flex: 1,
-    maxWidth: 70,
-    aspectRatio: 1,
     margin: 3,
-    justifyContent: 'center',
+    maxWidth: 50,
+    aspectRatio: 1,
+    borderRadius: 50,
     alignItems: 'center',
+    justifyContent: 'center',
+    // borderColor: colors.black[100],
   },
   cellText: {
-    color: 'gray[90]',
+    padding: 10,
+    color: colors.black[100],
     fontWeight: 'bold',
     fontSize: 28,
   },

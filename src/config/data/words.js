@@ -1,4 +1,4 @@
-[
+module.exports = [
   'which',
   'there',
   'their',

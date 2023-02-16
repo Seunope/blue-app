@@ -1,6 +1,7 @@
 import {View, Text, Pressable} from 'react-native';
-import {keys, ENTER, CLEAR, colors} from '../../config/utils/utils';
+import {keys, ENTER, DELETE} from '../../config/utils/utils';
 import styles, {keyWidth} from './Keyboard.styles';
+import colors from '../../config/utils/colors';
 
 const Keyboard = ({
   onKeyPressed = () => {},
@@ -9,20 +10,20 @@ const Keyboard = ({
   greyCaps = [],
 }) => {
   const isLongButton = key => {
-    return key === ENTER || key === CLEAR;
+    return key === ENTER || key === DELETE;
   };
 
   const getKeyBGColor = key => {
     if (greenCaps.includes(key)) {
-      return colors.primary;
+      return colors.green;
     }
     if (yellowCaps.includes(key)) {
-      return colors.secondary;
+      return colors.orange;
     }
     if (greyCaps.includes(key)) {
-      return colors.darkgrey;
+      return colors.gray[100];
     }
-    return colors.grey;
+    return colors.gray[70];
   };
 
   return (

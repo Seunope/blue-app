@@ -15,7 +15,8 @@ const HeaderContainerr = ({dark}: HeaderProps) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
-  const color = dark ? 'white' : 'white';
+  const color = dark ? 'black' : 'white';
+  const barStyle = dark ? 'dark-content' : 'light-content';
 
   return (
     <>
@@ -23,7 +24,7 @@ const HeaderContainerr = ({dark}: HeaderProps) => {
         translucent
         backgroundColor="transparent"
         hidden={false}
-        barStyle="light-content"
+        barStyle={barStyle}
       />
       <Box
         flexDirection="row"
@@ -43,6 +44,6 @@ const HeaderContainerr = ({dark}: HeaderProps) => {
   );
 };
 
-HeaderContainerr.defaultProps = {dark: false};
+HeaderContainerr.defaultProps = {dark: true};
 
 export default HeaderContainerr;

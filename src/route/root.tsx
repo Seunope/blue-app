@@ -1,6 +1,6 @@
 import React from 'react';
 import CallStack from './call';
-// import Wordle from '../screens/wordle/wordle';
+import Wordle from '../screens/wordle/wordle';
 import Dashboard from '../screens/dashboard';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -10,7 +10,7 @@ import {AppStateProvider} from '../config/utils/context/app_state';
 const RootStack = createStackNavigator();
 const RootStackScreen = () => {
   return (
-    <RootStack.Navigator initialRouteName="Dashboard">
+    <RootStack.Navigator initialRouteName="Wordle">
       <RootStack.Screen
         name="Dashboard"
         component={Dashboard}
@@ -19,13 +19,13 @@ const RootStackScreen = () => {
         }}
       />
 
-      {/* <RootStack.Screen
+      <RootStack.Screen
         name="Wordle"
         component={Wordle}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
 
       <RootStack.Screen
         name="CallStack"
