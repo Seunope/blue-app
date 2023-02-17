@@ -119,6 +119,7 @@
 
 import React, {useEffect} from 'react';
 import RootNavigation from './src/route/root';
+import RNBootSplash from 'react-native-bootsplash';
 import BlueAppFonts from './src/config/utils/fonts';
 import BlueAppColors from './src/config/utils/colors';
 import BlueAppCustom from './src/config/utils/custom';
@@ -134,16 +135,16 @@ const theme = extendTheme({
 
 const App = () => {
   useEffect(() => {
-    // initBootSplash();
+    initBootSplash();
   }, []);
 
-  // const initBootSplash = async () => {
-  //   try {
-  //     await RNBootSplash.hide({fade: true});
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const initBootSplash = async () => {
+    try {
+      await RNBootSplash.hide({fade: true});
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const config = {
     dependencies: {
       'linear-gradient': require('react-native-linear-gradient').default,

@@ -2,10 +2,10 @@ import {Center, Box, Text} from 'native-base';
 import WordleLogo from '../../assets/wordle';
 import colors from '../../config/utils/colors';
 import React, {useEffect, useState} from 'react';
-import Keyboard from '../../components/Keyboard';
-import fiveLetterWords from '../../config/data/words';
 import {useNavigation} from '@react-navigation/core';
+import fiveLetterWords from '../../config/data/words';
 import {ENTER, DELETE} from '../../config/utils/utils';
+import KeyboardPad from '../../components/KeyboardPad';
 import HeaderContainerr from '../../components/HeaderContainerr';
 import {getDayOfTheYear, copyArray} from '../../config/utils/utils';
 import {StyleSheet, View, SafeAreaView, ScrollView, Alert} from 'react-native';
@@ -153,7 +153,7 @@ const WordleGame = () => {
           </ScrollView>
           <Text color="black.100">Answer: {word}</Text>
         </Center>
-        <Keyboard
+        <KeyboardPad
           onKeyPressed={onKeyPressed}
           greenCaps={greenCaps}
           yellowCaps={yellowCaps}
