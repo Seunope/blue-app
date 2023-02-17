@@ -61,12 +61,19 @@ const CallAndReceive = props => {
             </VStack>
 
             <VStack space={3}>
-              <Center>
-                <Add isActive={false} />
-                <Text color="white.60" fontSize="xs">
-                  Add Call
-                </Text>
-              </Center>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate('CallStack', {
+                    screen: 'AudioCall',
+                  })
+                }>
+                <Center>
+                  <Add isActive={false} />
+                  <Text color="white.60" fontSize="xs">
+                    Add Call
+                  </Text>
+                </Center>
+              </Pressable>
             </VStack>
           </HStack>
 

@@ -1,13 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import MoonIcon from '../assets/moon';
-import {Text, Center, useColorMode, Pressable} from 'native-base';
 import {StyleSheet} from 'react-native';
-import AppContainer from '../components/AppContainer';
-import {StackScreenProps} from '@react-navigation/stack';
 import colors from '../config/utils/colors';
 import {useNavigation} from '@react-navigation/core';
-// type Props = StackScreenProps<AuthStackParams, 'SignUp'>;
+import AppContainer from '../components/AppContainer';
+import {Text, Center, useColorMode, Pressable} from 'native-base';
 
 const Dashboard: React.FC<Props> = props => {
   const navigation = useNavigation();

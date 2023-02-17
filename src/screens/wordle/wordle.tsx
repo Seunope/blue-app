@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/core';
 import fiveLetterWords from '../../config/data/words';
 import {ENTER, DELETE} from '../../config/utils/utils';
 import KeyboardPad from '../../components/KeyboardPad';
-import HeaderContainerr from '../../components/HeaderContainerr';
+import HeaderContainerr from '../../components/HeaderContainer';
 import {getDayOfTheYear, copyArray} from '../../config/utils/utils';
 import {StyleSheet, View, SafeAreaView, ScrollView, Alert} from 'react-native';
 

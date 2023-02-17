@@ -1,10 +1,18 @@
+import {
+  Box,
+  Text,
+  HStack,
+  Center,
+  VStack,
+  Avatar,
+  Pressable,
+} from 'native-base';
 import React from 'react';
 import Add from '../../../assets/call/add';
 import Mute from '../../../assets/call/mute';
 import EndCall from '../../../assets/call/end_call';
 import {useNavigation} from '@react-navigation/core';
 import MuteVideo from '../../../assets/call/mute_video';
-import {HStack, Center, VStack, Avatar, Box, Text} from 'native-base';
 import {ImageBackground, StyleSheet, StatusBar} from 'react-native';
 import VideoHeaderContainer from '../../../components/VideoContainer';
 
@@ -16,7 +24,11 @@ const CallAndReceive = () => {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    // <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground
+      source={require('../../../assets/call/dd.jpg')}
+      resizeMode="cover"
+      style={styles.image}>
       <Box flex="1" mt="4">
         <VideoHeaderContainer />
 
@@ -61,21 +73,30 @@ const CallAndReceive = () => {
               </VStack>
 
               <VStack space={3}>
-                <Center>
-                  <Add isActive={false} />
-                  <Text color="white.60" fontSize="xs">
-                    Add Call
-                  </Text>
-                </Center>
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate('CallStack', {
+                      screen: 'VideoCall',
+                    })
+                  }>
+                  <Center>
+                    <Add isActive={false} />
+                    <Text color="white.60" fontSize="xs">
+                      Add Call
+                    </Text>
+                  </Center>
+                </Pressable>
               </VStack>
 
               <VStack space={3}>
-                <Center>
-                  <EndCall isActive={true} />
-                  <Text color="white.60" fontSize="xs">
-                    End call
-                  </Text>
-                </Center>
+                <Pressable onPress={() => navigation.goBack()}>
+                  <Center>
+                    <EndCall isActive={true} />
+                    <Text color="white.60" fontSize="xs">
+                      End call
+                    </Text>
+                  </Center>
+                </Pressable>
               </VStack>
             </HStack>
           </VStack>

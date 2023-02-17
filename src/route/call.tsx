@@ -1,9 +1,8 @@
 import React from 'react';
-import colors from '../config/utils/colors';
-import AudioCall from '../screens/call-app/audio/audio_ongoing';
-import VideoCall from '../screens/call-app/video/video_ongoing';
 import ContactList from '../screens/call-app/contact_list';
 import {createStackNavigator} from '@react-navigation/stack';
+import VideoCall from '../screens/call-app/video/video_ongoing';
+import AudioCall from '../screens/call-app/audio/audio_ongoing';
 import CallAndReceive from '../screens/call-app/audio/audio_call_receive';
 import VideoCallAndReceive from '../screens/call-app/video/video_call_receive';
 

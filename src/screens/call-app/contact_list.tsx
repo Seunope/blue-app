@@ -1,27 +1,22 @@
-import React, {useState, useEffect} from 'react';
 import {
   Box,
   Text,
-  HStack,
+  Icon,
   Input,
-  FlatList,
+  HStack,
+  Spacer,
   VStack,
   Avatar,
-  Spacer,
-  Icon,
+  FlatList,
 } from 'native-base';
+import {Pressable} from 'react-native';
 import SearchIc from '../../assets/call/search';
-import {
-  Pressable,
-  StyleSheet,
-  useColorScheme,
-  useColorMode,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import contactListData from '../../config/data/contact_list_data';
-import HeaderContainerr from '../../components/HeaderContainerr';
+import HeaderContainerr from '../../components/HeaderContainer';
 
-const ContactList = props => {
+const ContactList = () => {
   const navigation = useNavigation();
   const [searchEntry, setSearchEntry] = useState('');
   const [searchedContacts, setSearchedContacts] = useState(contactListData);
@@ -44,11 +39,14 @@ const ContactList = props => {
   return (
     <>
       <Box bgColor="purple" p="7" pl="2">
-        <HeaderContainerr dark={false} />
+        <HeaderContainerr
+          dark={false}
+          hasHeader={true}
+          headerTxt="My contacts"
+        />
 
         <Input
           value={searchEntry}
-          // label="Phone Number"
           mt="2"
           borderRadius="10"
           bgColor="white.100"
@@ -120,24 +118,3 @@ const ContactList = props => {
   );
 };
 export default ContactList;
-const styles = StyleSheet.create({
-  page: {
-    padding: 15,
-    backgroundColor: 'white',
-    flex: 1,
-  },
-  contactName: {
-    fontSize: 16,
-    marginVertical: 10,
-  },
-  separator: {
-    width: '100%',
-    height: 1,
-    backgroundColor: '#f0f0f0',
-  },
-  searchInput: {
-    backgroundColor: '#f0f0f0',
-    // padding: 10,
-    borderRadius: 10,
-  },
-});

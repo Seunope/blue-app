@@ -16,16 +16,16 @@ import {
   FlatList,
   Pressable,
 } from 'native-base';
+import {useNavigation} from '@react-navigation/core';
 import {ImageBackground, StyleSheet, StatusBar, View} from 'react-native';
 import contactListData from '../../../config/data/contact_list_data';
-import {useNavigation} from '@react-navigation/core';
 
 // import CallBackground from '../../assets/call/call_background';
 
 const imagePath =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU';
 
-const CallAndReceive = props => {
+const CallAndReceive = () => {
   const navigation = useNavigation();
 
   return (
@@ -43,14 +43,15 @@ const CallAndReceive = props => {
           }}> */}
         <Center flex="1">
           <Text color="white.100" fontWeight="300" fontSize="xl" mt="2">
-            William Johns
+            Group Call
           </Text>
           <Text color="white.70" mt="2" mb="10">
-            calling
+            23:8
           </Text>
 
           <FlatList
             // horizontal={true}
+            showsVerticalScrollIndicator={false}
             numColumns={4}
             data={contactListData}
             renderItem={({item}) => (
@@ -121,12 +122,19 @@ const CallAndReceive = props => {
             </VStack>
 
             <VStack space={3}>
-              <Center>
-                <Video isActive={true} />
-                <Text color="white.60" fontSize="xs">
-                  Video
-                </Text>
-              </Center>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate('CallStack', {
+                    screen: 'VideoCallAndReceive',
+                  })
+                }>
+                <Center>
+                  <Video isActive={true} />
+                  <Text color="white.60" fontSize="xs">
+                    Video
+                  </Text>
+                </Center>
+              </Pressable>
             </VStack>
           </HStack>
 

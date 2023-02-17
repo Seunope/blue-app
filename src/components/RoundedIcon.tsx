@@ -2,13 +2,13 @@ import React, {ReactNode} from 'react';
 import {Box, Text, Theme, Icon} from 'native-base';
 
 export interface RoundedIconProps {
-  name?: string | any;
   size?: number;
-  color?: keyof Theme['colors'];
-  backgroundColor?: string;
+  name?: string | any;
   iconRatio?: number;
-  align?: 'flex-start' | 'center' | 'flex-end';
   children?: ReactNode;
+  backgroundColor?: string;
+  color?: keyof Theme['colors'];
+  align?: 'flex-start' | 'center' | 'flex-end';
 }
 
 const RoundedIcon = ({

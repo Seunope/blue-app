@@ -1,19 +1,10 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import colors from '../config/utils/colors';
-import {useNavigation} from '@react-navigation/core';
-import HeaderContainer from './HeaderContainer';
 import {ParentContainer} from '../config/utils/types';
-import {Heading, VStack, Box, ScrollView} from 'native-base';
+import {VStack, Box, ScrollView} from 'native-base';
 
-const AppContainer: React.FC<ParentContainer> = ({
-  children,
-  headerTxt,
-  scrollAble,
-  hasHeader = true,
-  isDashboard = false,
-  showNotify = true,
-}) => {
+const AppContainer: React.FC<ParentContainer> = ({children, scrollAble}) => {
   return (
     <Box
       flex={1}
@@ -22,14 +13,6 @@ const AppContainer: React.FC<ParentContainer> = ({
       //   color: 'black.100',
       // }}
     >
-      {isDashboard ? null : (
-        <HeaderContainer
-          showNotification={showNotify}
-          headerTxt={headerTxt}
-          hasHeader={hasHeader}
-        />
-      )}
-
       <StatusBar barStyle="dark-content" backgroundColor={colors.white[100]} />
       <Box
         p={5}
