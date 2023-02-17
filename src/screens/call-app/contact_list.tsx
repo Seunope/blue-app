@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   Box,
   Text,
-  Heading,
   HStack,
   Input,
   FlatList,
@@ -10,14 +9,17 @@ import {
   Avatar,
   Spacer,
   Icon,
-  SearchIcon,
 } from 'native-base';
-import {Pressable, StyleSheet} from 'react-native';
+import SearchIc from '../../assets/call/search';
+import {
+  Pressable,
+  StyleSheet,
+  useColorScheme,
+  useColorMode,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-import AppContainer from '../../components/AppContainer';
 import contactListData from '../../config/data/contact_list_data';
 import HeaderContainerr from '../../components/HeaderContainerr';
-import SearchIc from '../../assets/call/search';
 
 const ContactList = props => {
   const navigation = useNavigation();
@@ -42,23 +44,18 @@ const ContactList = props => {
   return (
     <>
       <Box bgColor="purple" p="7" pl="2">
-        <HeaderContainerr />
-        <Input
-          value={searchEntry}
-          // placeholderTextColor="purple"
-          placeholder="search contacts"
-          onChangeText={setSearchEntry}
-          style={styles.searchInput}
-        />
+        <HeaderContainerr dark={false} />
 
         <Input
           value={searchEntry}
           // label="Phone Number"
-          // borderRadius="8"
-          placeholder="Mobile number"
+          mt="2"
+          borderRadius="10"
+          bgColor="white.100"
+          placeholder="Search contacts"
           onChangeText={itemValue => setSearchEntry(itemValue)}
           InputRightElement={
-            <Pressable>
+            <Pressable onPress={() => filterContacts()}>
               <Icon as={<SearchIc />} size={5} mr="2" color="muted.400" />
             </Pressable>
           }
@@ -72,18 +69,6 @@ const ContactList = props => {
         //   color: 'black.100',
         // }}
       >
-        <Input
-          value={searchEntry}
-          // label="Phone Number"
-          // borderRadius="8"
-          placeholder="Mobile number"
-          onChangeText={itemValue => setSearchEntry(itemValue)}
-          InputRightElement={
-            <Pressable>
-              <Icon as={<SearchIcon />} size={5} mr="2" color="muted.400" />
-            </Pressable>
-          }
-        />
         <FlatList
           data={searchedContacts}
           renderItem={({item}) => (

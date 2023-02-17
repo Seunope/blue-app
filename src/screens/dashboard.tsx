@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 import MoonIcon from '../assets/moon';
+import {Text, Center, useColorMode, Pressable} from 'native-base';
 import {StyleSheet} from 'react-native';
-import {Text, Center, Pressable} from 'native-base';
 import AppContainer from '../components/AppContainer';
 import {StackScreenProps} from '@react-navigation/stack';
 import colors from '../config/utils/colors';
@@ -11,11 +11,13 @@ import {useNavigation} from '@react-navigation/core';
 
 const Dashboard: React.FC<Props> = props => {
   const navigation = useNavigation();
+  const {toggleColorMode, colorMode} = useColorMode();
+
   return (
     <AppContainer hasHeader={false} isDashboard={true}>
-      <View style={styles.containerRight}>
+      <Pressable style={styles.containerRight} onPress={toggleColorMode}>
         <MoonIcon />
-      </View>
+      </Pressable>
 
       <Text
         fontSize="3xl"
@@ -26,7 +28,7 @@ const Dashboard: React.FC<Props> = props => {
         mb="20">
         Blue<Text color="black.100">Apps</Text>
       </Text>
-
+      {/* <Text>{colorMode}</Text> */}
       <Pressable
         style={styles.containerMain}
         onPress={() => navigation.navigate('Wordle')}>

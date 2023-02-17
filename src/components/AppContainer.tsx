@@ -35,10 +35,9 @@ const AppContainer: React.FC<ParentContainer> = ({
         p={5}
         flex={1}
         bgColor="white.100"
-        // _dark={{
-        //   color: 'black.100',
-        // }}
-      >
+        _dark={{
+          color: 'black.100',
+        }}>
         {scrollAble ? (
           <ScrollView showsVerticalScrollIndicator={false}>
             <VStack space={5}>{children}</VStack>
