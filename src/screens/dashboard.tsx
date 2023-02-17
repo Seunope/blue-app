@@ -29,7 +29,7 @@ const Dashboard: React.FC<Props> = props => {
 
       <Pressable
         style={styles.containerMain}
-        onPress={() => navigation.navigate('CallStack')}>
+        onPress={() => navigation.navigate('Wordle')}>
         <View style={styles.containerSub}>
           <View style={styles.containerRight}>
             <View style={styles.boxRight} />

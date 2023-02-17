@@ -1,6 +1,3 @@
-// 1. Import the extendTheme function
-import {extendTheme, NativeBaseProvider} from 'native-base';
-// 2. Extend the theme to include custom colors, fonts, etc
 export default {
   white: {
     100: '#FFFFFF',
@@ -21,6 +18,7 @@ export default {
     90: '#EDEDED',
     80: '#F6F6F6',
     70: '#818384',
+    60: '#514E51',
   },
 
   red: '#F70032',
@@ -28,13 +26,4 @@ export default {
   green: '#93D75C',
   purple: '#927FF2',
   orange: '#FABC2E',
-
-  wordle: {
-    black: '#121214',
-    darkgrey: '#3A3A3D',
-    grey: '#818384',
-    lightgrey: '#D7DADC',
-    primary: '#538D4E',
-    secondary: '#B59F3B',
-  },
 };

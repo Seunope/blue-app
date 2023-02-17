@@ -1,72 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, SafeAreaView, ScrollView, Alert} from 'react-native';
 import {Center, Box, Text} from 'native-base';
-import {CLEAR, ENTER, colorsToEmoji, DELETE} from '../../config/utils/utils';
-import Keyboard from '../../components/Keyboard';
-// import * as Clipboard from 'expo-clipboard';
-import {StatusBar} from 'react-native';
 import WordleLogo from '../../assets/wordle';
-import HeaderContainerr from '../../components/HeaderContainerr';
 import colors from '../../config/utils/colors';
+import React, {useEffect, useState} from 'react';
+import Keyboard from '../../components/Keyboard';
 import fiveLetterWords from '../../config/data/words';
+import {useNavigation} from '@react-navigation/core';
+import {ENTER, DELETE} from '../../config/utils/utils';
+import HeaderContainerr from '../../components/HeaderContainerr';
+import {getDayOfTheYear, copyArray} from '../../config/utils/utils';
+import {StyleSheet, View, SafeAreaView, ScrollView, Alert} from 'react-native';
 
 const NUMBER_OF_TRIES = 6;
-
-const copyArray = (arr: any[]) => {
-  return [...arr.map((rows: any) => [...rows])];
-};
-
-const getDayOfTheYear = () => {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 0);
-  const diff = Number(now) - Number(start);
-  const oneDay = 1000 * 60 * 60 * 24;
-  const day = Math.floor(diff / oneDay);
-  return day;
-};
 const dayOfTheYear = getDayOfTheYear();
 
-export default () => {
-  const wordUpperLimit = fiveLetterWords.length - 1;
-  const word = fiveLetterWords[Math.floor(Math.random() * wordUpperLimit)];
-  const letters = word.split(''); // ['h', 'e', 'l', 'l', 'o']
+const WordleGame = () => {
+  const word = fiveLetterWords[dayOfTheYear];
+  const letters = word.split('');
 
+  const navigation = useNavigation();
   const [rows, setRows] = useState(
     new Array(NUMBER_OF_TRIES).fill(new Array(letters.length).fill('')),
   );
   const [curRow, setCurRow] = useState(0);
   const [curCol, setCurCol] = useState(0);
-  const [gameState, setGameState] = useState('playing'); // won, lost, playing
+  const [gameState, setGameState] = useState('playing');
 
   useEffect(() => {
     if (curRow > 0) {
       checkGameState();
     }
-  }, []);
+  }, [curRow]);
 
   const checkGameState = () => {
     if (checkIfWon() && gameState !== 'won') {
-      // Alert.alert('Huraaay', 'You won!', [
-      // {text: 'Share', onPress: shareScore},
-      // ]);
+      Alert.alert(
+        'Congratulation',
+        'Congratulation! You won! $😊$',
+        [
+          {
+            text: 'Okay',
+            onPress: () => navigation.goBack(),
+          },
+        ],
+        {cancelable: false},
+      );
       setGameState('won');
     } else if (checkIfLost() && gameState !== 'lost') {
-      Alert.alert('Meh', 'Try again tomorrow!');
-      setGameState('lost');
+      Alert.alert('Whoops you lost!', "Don't worry, give it another shot!");
+      setRows(
+        new Array(NUMBER_OF_TRIES).fill(new Array(letters.length).fill('')),
+      );
+      setCurRow(0);
+      setCurCol(0);
+      setGameState('playing');
     }
   };
-
-  //   const shareScore = () => {
-  //     const textMap = rows
-  //       .map((row, i) =>
-  //         row.map((cell, j) => colorsToEmoji[getCellBGColor(i, j)]).join(''),
-  //       )
-  //       .filter(row => row)
-  //       .join('\n');
-  //     const textToShare = `Wordle \n${textMap}`;
-  //     // Clipboard.setString(textToShare);
-  //     Alert.alert('Copied successfully', 'Share your score on you social media');
-  //   };
 
   const checkIfWon = () => {
     const row = rows[curRow - 1];
@@ -113,10 +101,6 @@ export default () => {
     }
   };
 
-  const isCellActive = (row: number, col: number) => {
-    return row === curRow && col === curCol;
-  };
-
   const getCellBGColor = (row: number, col: any | number) => {
     const letter = rows[row][col];
 
@@ -124,10 +108,10 @@ export default () => {
       return colors.gray[100];
     }
     if (letter === letters[col]) {
-      return 'purple';
+      return colors.purple;
     }
     if (letters.includes(letter)) {
-      return 'green';
+      return colors.green;
     }
     return colors.gray[70];
   };
@@ -139,8 +123,8 @@ export default () => {
   };
 
   const greenCaps = getAllLettersWithColor(colors.green);
-  const yellowCaps = getAllLettersWithColor(colors.orange);
-  const greyCaps = getAllLettersWithColor(colors.gray[100]);
+  const yellowCaps = getAllLettersWithColor(colors.purple);
+  const greyCaps = getAllLettersWithColor(colors.gray[70]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -171,7 +155,7 @@ export default () => {
         </Center>
         <Keyboard
           onKeyPressed={onKeyPressed}
-          greenCaps={greenCaps} // ['a', 'b']
+          greenCaps={greenCaps}
           yellowCaps={yellowCaps}
           greyCaps={greyCaps}
         />
@@ -180,19 +164,14 @@ export default () => {
   );
 };
 
+export default WordleGame;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.black[100],
     alignItems: 'center',
   },
-  title: {
-    color: colors.gray[100],
-    fontSize: 32,
-    fontWeight: 'bold',
-    letterSpacing: 7,
-  },
-
   map: {
     alignSelf: 'stretch',
     marginVertical: 20,
@@ -210,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    // borderColor: colors.black[100],
+    borderColor: colors.black[100],
   },
   cellText: {
     padding: 10,

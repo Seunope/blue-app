@@ -8,4 +8,11 @@ export interface ParentContainer {
   children: React.ReactNode;
 }
 
+export interface KeyboardScreen {
+  greenCaps: string[];
+  greyCaps: string[];
+  yellowCaps: string[];
+  onKeyPressed: () => {};
+}
+
 export {};
